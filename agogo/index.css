@@ -1,0 +1,39 @@
+body{
+    background-color: grey;
+}
+.butt{
+width: 100%;
+display: flex;
+justify-content: space-between;
+border-bottom: 2px solid white;
+}
+button{
+    color: white;
+    font-size: 20px;
+    width: 250px;
+    border: none;
+    background-color: black;
+}
+input{
+    width: 200px;
+    height: 30px;
+    margin-top: 10rem;
+    margin-left:56rem ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.afficher{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+    font-size: 20px;
+    color: aliceblue;
+    display: none;
+}
+.timer{
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 15rem;
+}
