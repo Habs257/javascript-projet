@@ -17,11 +17,6 @@ button{
 input{
     width: 200px;
     height: 30px;
-    margin-top: 10rem;
-    margin-left:56rem ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .afficher{
     display: flex;
@@ -36,4 +31,11 @@ input{
     font-size: 4rem;
     text-align: center;
     margin-top: 15rem;
+}
+.impu{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
 }

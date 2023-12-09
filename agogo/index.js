@@ -10,12 +10,15 @@ const boutCinq = document.querySelector(".but5")
 
 
 
+
+
+
 let boutUn = 20;
 boutonUn.addEventListener("click",()=>{
 let interval = setInterval(()=>{
   timer(boutUn)
   boutUn--
-  if(boutUn===-1){
+  if(boutUn===0){
     clearInterval(interval)
   }
 },1000)
@@ -26,7 +29,7 @@ boutDeux.addEventListener("click",()=>{
   let inter = setInterval(()=>{
     timer(bouDeux)
     bouDeux--
-    if(bouDeux===-1){
+    if(bouDeux===0){
       clearInterval(inter)
     }
   },1000)
@@ -37,7 +40,7 @@ boutTroi.addEventListener("click",()=>{
   let inte = setInterval(()=>{
     timer(bouTrois)
     bouTrois--
-    if(bouTrois===-1){
+    if(bouTrois===0){
       clearInterval(inte)
     }
   },1000)
@@ -51,7 +54,7 @@ bouQuatre.addEventListener("click",()=>{
   let int = setInterval(()=>{
     timer(boutquatre)
     boutquatre--
-    if(boutquatre===-1){
+    if(boutquatre===0){
       clearInterval(int)
     }
   },1000)
@@ -66,11 +69,32 @@ boutCinq.addEventListener("click",()=>{
   let int = setInterval(()=>{
     timer(boutCin)
     boutCin--
-    if(boutCin===-1){
+    if(boutCin===0){
       clearInterval(int)
     }
   },1000)
-})
+});
+
+
+let input = document.getElementById("impTime");
+input.addEventListener("change",(event) => {
+  let input = event.target;
+let value = parseInt(input.value);
+  let ime = setInterval(() => {
+    if (isNaN(value)) {
+      return;
+    }
+    timer(value);
+    value--;
+    if (value===0) {
+      clearInterval(ime);
+    }
+  }, 1000);
+});
+
+
+
+
 
 
 function timer(seconds) {
@@ -78,4 +102,5 @@ function timer(seconds) {
   let minutes = Math.floor(seconds/60%60)
   let secondes = Math.floor(seconds%60)
   myTimer.innerHTML =`${heur}:${minutes}:${secondes}`
+
 }
