@@ -1,31 +1,59 @@
 const display = document.querySelector(".display");
-const all = document.querySelectorAll("button");
-const specialChars = ["*","+","-", "÷", ".", "="];
-let sortie = "";
+const buttons = document.querySelectorAll("button");
 
-const calculate = (btnvalue) => {
-   if (btnvalue === "=" && sortie !== "") {
-      // Utilisez parseFloat pour convertir la chaîne en nombre
-      sortie = eval(sortie.replace("÷", "/"));
-   } else if (btnvalue === "RESET") {
-      sortie = "";
-   } else if (btnvalue === "DEL") {
-      sortie = sortie.slice(0, -1);
-   } else {
-      if (sortie === "" && specialChars.includes(btnvalue)) return;
+// Variable pour la sortie
+let output = "";
 
-      // Vérifier si le dernier caractère est un opérateur spécial
-      const lastChar = sortie.slice(-1);
-      if (specialChars.includes(lastChar)) {
-         // Remplacer le dernier opérateur spécial s'il y en a déjà un
-         sortie = sortie.slice(0, -1);
-      }
+// Fonction de calcul
+function calculate(btnValue) {
+  // Vérifier si le bouton "=" est cliqué
+  if (btnValue === "=" && output !== "") {
+    // Remplacer les ÷ par /
+    output = output.replace("÷", "/");
 
-      sortie += btnvalue;
-   }
-   display.value = sortie;
-};
+    // Valider la sortie
+    const isInputValid = validateInput(output);
+    if (!isInputValid) {
+      output = "Invalid input";
+    }
 
-all.forEach((button) => {
-    button.addEventListener("click", (e) => calculate(e.target.dataset.value));
+    // Convertir la sortie en nombre
+    const result = Number(output);
+
+    // Vérifier si le résultat est valide
+    if (isNaN(result)) {
+      output = "Invalid input";
+    } else {
+      output = result;
+    }
+  } else if (btnValue === "RESET") {
+    // Réinitialiser la sortie
+    output = "";
+  } else if (btnValue === "DEL") {
+    // Supprimer le dernier caractère de la sortie
+    output = output.slice(0, -1);
+  } else {
+    // Ajouter le caractère à la fin de la sortie
+    output += btnValue;
+  }
+
+  // Mettre à jour la valeur de la sortie dans l'élément <input>
+  display.value = output;
+}
+
+// Fonction de validation des entrées
+function validateInput(input) {
+  // Vérifier que l'entrée ne contient que des nombres, des opérateurs et des parenthèses
+  const regex = /[0-9+\-*/.()]/g;
+  return regex.test(input);
+}
+
+// Parcourir tous les boutons
+buttons.forEach((button) => {
+  // Ajouter un écouteur d'événements "click" au bouton
+  button.addEventListener("click", () => calculate(button.dataset.value));
 });
+
+
+
+
