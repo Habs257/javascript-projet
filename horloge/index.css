@@ -16,11 +16,14 @@ height: 300px;
 border: 1px solid black;
 border-radius: 50%;
 background-image: url(img/free-clock-faces-design-1024x1012-removebg-preview.png);
-background-color: white;
+background-color: black;
 background-size: cover;
 }
 .nom{
-    margin-bottom:rem;
+    position: absolute;
+    top: 49.2%;
+    right: 47%;
+    color: azure;
 }
 .horlo{
     position: absolute;
