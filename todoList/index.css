@@ -1,0 +1,120 @@
+
+body {
+    background-color: rgb(120, 110, 129);
+}
+.container {
+    display: flex;
+    border: 2px solid #145355;
+    border-radius: 12px;
+    margin: 15px;
+    margin-top: 3rem;
+}
+h1 {
+    font-size: 22px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: #5F9EA0;
+    margin-top: 0;
+    border-top-left-radius: 8px;
+    padding: 8px;
+}
+
+#form {
+    margin-left: 1rem;
+}
+
+#msg {
+    color: rgb(99, 31, 31);
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bolder;
+    font-style: oblique;
+  }
+
+input, textarea {
+    width: 90%;
+    padding: 8px;
+    font-size: 20px;
+    border: 0;
+    border: 1px solid;
+    border-radius: 10px;
+}
+button {
+    cursor: pointer;
+    width: 80%;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 12px;
+    color: white;
+    background-color: #5F9EA0;
+}
+
+.liste-de-taches {
+    color: #5F9EA0 !important;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.les-th {
+    background-color: #5F9EA0;
+}
+
+table {
+    font-family: arial, sans-serif;
+    width: 56rem;
+    margin-left: 2rem;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 18px;
+    text-align: center;
+    color: #DFD3C6;
+}
+
+.les-tr:nth-child(even) {
+    background-color: rgb(156,195,195);
+}
+
+.options .span1 {
+    background-color: #70CAFF;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.options .span2 {
+    background-color: #07FEC4;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.options .span3 {
+    background-color: #FE3D3D;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.options span i {
+    color: black;
+}
+
+.description {
+    text-align: center;
+    color: #5F9EA0;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-top: 25rem;
+    margin-left: 2rem;
+}
+.description div {
+    background-color: white;
+    width: 56rem;
+    height: 10rem;
+    border: 2px solid #5F9EA0;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}

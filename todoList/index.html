@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5127414381.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>To Do List</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Ajouter une tache</h1>
+            <form id="form">
+                <div id="msg"></div>
+                <div>
+                    <input type="text" id="categorie" placeholder="Categorie">
+                </div><br>
+                <div>
+                    <input type="text" id="titre" placeholder="Titre">
+                </div><br>
+                <div>
+                    <input type="date" id="date">
+                </div><br>
+                <div>
+                    <textarea name="" id="textarea" placeholder="Description"></textarea>
+                </div><br>
+                <div>
+                    <input type="text" id="statut" placeholder="Statut">
+                </div><br>
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+
+        <!-- partie taches -->
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5" class="liste-de-taches">Liste de taches</th>
+                    </tr>
+                    <tr class="les-th">
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Titre</th>
+                        <th>Categorie</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody id="tasks"></tbody>
+            </table>
+            <div class="description">
+                <h3>Description</h3>
+                <div id="textDescription"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
