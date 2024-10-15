@@ -1,0 +1,99 @@
+body {
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-family: 'Brygada 1918', serif;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
+}
+.logo {
+    width: 70px;
+    border-radius: 50%;
+}
+.container-fluid h3 {
+    color: #f383a3;
+}
+.btn-outline-dark {
+    border: 2px solid black;
+}
+.btn-outline-dark:hover {
+    background-color: #f383a3;
+    color: white;
+    border: none;
+}
+.grande-img {
+    position: relative;
+}
+.explore {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+}
+.quandy {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #f284a0;
+}
+.explore button {
+    border: 3px solid black;
+    font-size: 18px;
+}
+.explore button a {
+    color: black;
+    text-decoration: none;
+}
+
+.buttons button:hover {
+    background-color: black;
+    color: red;
+}
+
+.stars {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    left: 50%;
+ }
+.stars i {
+    color: #e6e6e6;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.stars i.active {
+    color: #ff9c1a;
+}
+
+
+.card-img-top {
+    height: 25rem !important;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.bag-btn {
+    position: absolute;
+    top: 77.8%;
+    right: 0;
+    background-color: #FCE8A0;
+    border: none;
+    border-top-left-radius: 15px;
+    padding: 0.5rem 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s linear;
+    cursor: pointer;
+
+}
+
+.span2 {
+    display: flex;
+    justify-content: end;
+}
+
+h5 {
+    display: flex;
+    justify-content: space-between;
+}
