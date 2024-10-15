@@ -1,59 +1,160 @@
-const display = document.querySelector(".display");
-const buttons = document.querySelectorAll("button");
 
-// Variable pour la sortie
-let output = "";
-
-// Fonction de calcul
-function calculate(btnValue) {
-  // Vérifier si le bouton "=" est cliqué
-  if (btnValue === "=" && output !== "") {
-    // Remplacer les ÷ par /
-    output = output.replace("÷", "/");
-
-    // Valider la sortie
-    const isInputValid = validateInput(output);
-    if (!isInputValid) {
-      output = "Invalid input";
-    }
-
-    // Convertir la sortie en nombre
-    const result = Number(output);
-
-    // Vérifier si le résultat est valide
-    if (isNaN(result)) {
-      output = "Invalid input";
-    } else {
-      output = result;
-    }
-  } else if (btnValue === "RESET") {
-    // Réinitialiser la sortie
-    output = "";
-  } else if (btnValue === "DEL") {
-    // Supprimer le dernier caractère de la sortie
-    output = output.slice(0, -1);
-  } else {
-    // Ajouter le caractère à la fin de la sortie
-    output += btnValue;
+class Calculator {
+  constructor(previousOperandTextElement, currentOperandTextElement) {
+    this.previousOperandTextElement = previousOperandTextElement
+    this.currentOperandTextElement = currentOperandTextElement
+    this.clear()
   }
 
-  // Mettre à jour la valeur de la sortie dans l'élément <input>
-  display.value = output;
+  clear() {
+    this.currentOperand = ''
+    this.previousOperand = ''
+    this.operation = undefined
+  }
+
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
+  }
+
+  appendNumber(number) {
+    if (number === '.' && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + number.toString()
+  }
+
+  chooseOperation(operation) {
+    if (this.currentOperand === '') return
+    if (this.previousOperand !== '') {
+      this.compute()
+    }
+    this.operation = operation
+    this.previousOperand = this.currentOperand
+    this.currentOperand = ''
+  }
+
+  compute() {
+    let computation
+    const prev = parseFloat(this.previousOperand)
+    const current = parseFloat(this.currentOperand)
+    if (isNaN(prev) || isNaN(current)) return
+    switch (this.operation) {
+      case '+':
+        computation = prev + current
+        break
+      case '-':
+        computation = prev - current
+        break
+      case '*':
+        computation = prev * current
+        break
+      case '÷':
+        computation = prev / current
+        break
+      default:
+        return
+    }
+    this.currentOperand = computation
+    this.operation = undefined
+    this.previousOperand = ''
+  }
+
+  getDisplayNumber(number) {
+    const stringNumber = number.toString()
+    const integerDigits = parseFloat(stringNumber.split('.')[0])
+    const decimalDigits = stringNumber.split('.')[1]
+    let integerDisplay
+    if (isNaN(integerDigits)) {
+      integerDisplay = ''
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay
+    }
+  }
+
+  updateDisplay() {
+    this.currentOperandTextElement.innerText =
+      this.getDisplayNumber(this.currentOperand)
+    if (this.operation != null) {
+      this.previousOperandTextElement.innerText =
+        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+      this.previousOperandTextElement.innerText = ''
+    }
+  }
 }
 
-// Fonction de validation des entrées
-function validateInput(input) {
-  // Vérifier que l'entrée ne contient que des nombres, des opérateurs et des parenthèses
-  const regex = /[0-9+\-*/.()]/g;
-  return regex.test(input);
+
+const numberButtons = document.querySelectorAll('[data-number]')
+const operationButtons = document.querySelectorAll('[data-operation]')
+const equalsButton = document.querySelector('[data-equals]')
+const deleteButton = document.querySelector('[data-delete]')
+const allClearButton = document.querySelector('[data-all-clear]')
+const previousOperandTextElement = document.querySelector('[data-previous-operand]')
+const currentOperandTextElement = document.querySelector('[data-current-operand]')
+
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
+
+numberButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+operationButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.chooseOperation(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+equalsButton.addEventListener('click', button => {
+  calculator.compute()
+  calculator.updateDisplay()
+})
+
+allClearButton.addEventListener('click', button => {
+  calculator.clear()
+  calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button => {
+  calculator.delete()
+  calculator.updateDisplay()
+})
+
+
+//THEME CSS
+const radio1 = document.getElementById('radio1');
+const radio2 = document.getElementById('radio2');
+const radio3 = document.getElementById('radio3');
+const outPut = document.querySelector(".output")
+radio1.addEventListener ('click', function(event) {
+if (event.target.checked) {
+  document.body.style.backgroundColor = "hsl(222, 26%, 31%)"
 }
-
-// Parcourir tous les boutons
-buttons.forEach((button) => {
-  // Ajouter un écouteur d'événements "click" au bouton
-  button.addEventListener("click", () => calculate(button.dataset.value));
-});
-
-
-
-
+})
+radio2.addEventListener ('click', function(event) {
+if (event.target.checked) {
+  document.body.style.backgroundColor = "hsl(0, 0%, 90%)"
+  outPut.style.backgroundColor = "#F0EFF0"
+}
+})
+radio3.addEventListener ('click', function(event) {
+if (event.target.checked) {
+  document.body.style.backgroundColor = "hsl(268, 75%, 9%)"
+  outPut.style.backgroundColor = "#21043E"
+  numberButtons.forEach(element => {
+      element.style.backgroundColor = "#88539E"
+      element.style.color = "#BBA050"
+  });
+  operationButtons.forEach(element => {
+    element.style.backgroundColor = "#88539E"
+    element.style.color = "#BBA050"
+  });
+  
+}
+})
